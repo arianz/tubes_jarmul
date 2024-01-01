@@ -152,7 +152,16 @@ mymuteicon.style.visibility = 'hidden';
 let myvideooff = document.querySelector("#myvideooff");
 myvideooff.style.visibility = 'hidden';
 
-const configuration = { iceServers: [{ urls: "stun:stun.stunprotocol.org" }] }
+//const configuration = { iceServers: [{ urls: "stun:stunserver.stunprotocol.org" }] }
+const configuration = {
+    iceServers: [
+        {
+            urls: "turn:relay1.expressturn.com:3478",
+            username: "efK5I0VUFHP1ONJ542",
+            credential: "4ERVxFyeA2hepMD4"
+        }
+    ]
+};
 
 const mediaConstraints = { video: true, audio: true };
 
@@ -401,8 +410,6 @@ function handleVideoAnswer(answer, sid) {
     const ans = new RTCSessionDescription(answer);
     connections[sid].setRemoteDescription(ans);
 }
-
-//Thanks to (https://github.com/miroslavpejic85) for ScreenShare Code
 
 screenShareButt.addEventListener('click', () => {
     screenShareToggle();
